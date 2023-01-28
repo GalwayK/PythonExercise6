@@ -1,3 +1,4 @@
+import pandas
 from flask import Flask, render_template
 
 application = Flask(__name__)
@@ -10,8 +11,10 @@ def get_dictionary_about_page():
 
 @application.route("/dict/<word>")
 def get_dictionary_word(word):
+    df = pandas.read_csv("data/dictionary.csv")
+    definition = df.loc[df["word"] == word]["definition"].squeeze()
     word_dict = {"word": word,
-                 "definition": word.upper()}
+                 "definition": definition}
     return word_dict
 
 

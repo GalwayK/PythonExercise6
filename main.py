@@ -1,4 +1,6 @@
 from flask import Flask, render_template
+import pandas
+import numpy
 
 application = Flask(__name__)
 
@@ -15,10 +17,17 @@ def get_about():
 
 @application.route("/api/v1/<station>/<date>")
 def get_weather_data(station, date):
-    temperature = 12
-    return {"station": station,
-            "date": date,
-            "temperature": f"{temperature}"}
+    station_file = f"data/data_small/TG_STAID{str(station).zfill(6)}.txt"
+
+    df = pandas.read_csv(station_file, skiprows=20, parse_dates=["    DATE"])
+    temperature = df.loc[df["    DATE"] == date]["   TG"].squeeze() / 10
+
+    station_dict = {"station": station_file,
+                    "date": date,
+                    "temperature": f"{temperature}"
+                    }
+
+    return station_dict
 
 
 if __name__ == "__main__":
