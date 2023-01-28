@@ -4,10 +4,13 @@ import numpy
 
 application = Flask(__name__)
 
+station_list = []
+station_file = pandas.read_csv("data/data_small/stations.txt", skiprows=17)
+station_file = station_file[["STANAME                                 ", "STAID"]]
 
-@application.route("/home/")
+@application.route("/")
 def get_home():
-    return render_template("home.html")
+    return render_template("home.html", data=station_file)
 
 
 @application.route("/about/")
