@@ -11,9 +11,22 @@
     </header>
 
     <main>
-        <p> URL format: http://127.0.0.1:8080/api/v1/station/date </p>
-        <p> URL Example: <a href = "http://127.0.0.1:8080/api/v1/10/1988-10-10"> http://127.0.0.1:8080/api/v1/10/1988-10-25 </a></p>
-        {{data.to_html()|safe}}
+        <div>
+            <p> Retrieve the data for a station for a specific date </p>
+            <p> URL format: http://127.0.0.1:8080/api/v1/station/date </p>
+            <p> URL Example: <a href = "http://127.0.0.1:8080/api/v1/10/1988-10-10"> http://127.0.0.1:8080/api/v1/10/1988-10-25 </a></p>
+        </div>
+        <div>
+            <p> Retrieve all the data for a station for all dates </p>
+            <p> URL format: http://127.0.0.1:8080/api/v2/station </p>
+            <p> URL Example: <a href = "http://127.0.0.1:8080/api/v2/10"> http://127.0.0.1:8080/api/v2/10 </a></p>
+        </div>
+        <div>
+            <p> Retrieve all the data for a station for a specific year </p>
+            <p> URL format: http://127.0.0.1:8080/api/v3/year </p>
+            <p> URL Example: <a href = "http://127.0.0.1:8080/api/v3/10/1990"> http://127.0.0.1:8080/api/v3/10/1990 </a></p>
+        </div>
+        <div> {{data.to_html()|safe}} </div>
     </main>
 
     <footer>
